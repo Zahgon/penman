@@ -124,15 +124,7 @@ def _check(g, model):
 
 def _order_funcs(key_funcs):
     def split_arg(arg):
-        values = arg.split(',')
-        for value in values:
-            if value not in key_funcs:
-                raise argparse.ArgumentTypeError(
-                    'invalid choice: {!r} (choose from {})'.format(
-                        value, ', '.join(map(repr, key_funcs))
-                    )
-                )
-        return values
+        pass
 
     return split_arg
 
@@ -149,7 +141,7 @@ def _make_sort_key(keys, model, key_funcs):
             funcs.append(func)
 
     def sort_key(role, funcs=funcs):
-        return [func(role) for func in funcs]
+        pass
 
     return sort_key, kwargs
 

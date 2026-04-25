@@ -194,9 +194,7 @@ class Model(object):
         role is canonicalized. Unlike :meth:`invert`, this does not
         swap the source and target of *triple*.
         """
-        source, role, target = triple
-        canonical = self.canonicalize_role(role)
-        return (source, canonical, target)
+        pass
 
     def is_role_reifiable(self, role: Role) -> bool:
         """Return ``True`` if *role* can be reified."""
@@ -303,25 +301,19 @@ class Model(object):
 
     def original_order(self, role: Role):
         """Role sorting key that does not change the order."""
-        return True
+        pass
 
     def alphanumeric_order(self, role: Role):
         """Role sorting key for alphanumeric order."""
-        m = re.match(r'(.*\D)(\d+)$', role)
-        if m:
-            rolename = m.group(1)
-            roleno = int(m.group(2))
-        else:
-            rolename, roleno = role, 0
-        return rolename, roleno
+        pass
 
     def canonical_order(self, role: Role):
         """Role sorting key that finds a canonical order."""
-        return (self.is_role_inverted(role), self.alphanumeric_order(role))
+        pass
 
     def random_order(self, role: Role):
         """Role sorting key that randomizes the order."""
-        return random.random()
+        pass
 
     def errors(self, graph: Graph) -> Dict[Optional[BasicTriple], List[str]]:
         """

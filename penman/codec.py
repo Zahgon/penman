@@ -139,7 +139,7 @@ class PENMANCodec(object):
         """
         Format *tree* into a PENMAN string.
         """
-        return format(tree, indent=indent, compact=compact)
+        pass
 
     def format_triples(
         self,
@@ -188,8 +188,7 @@ def _decode(s: str, model: Optional[Model] = None) -> Graph:
         <Graph object (top=b) at ...>
 
     """
-    codec = PENMANCodec(model=model)
-    return codec.decode(s)
+    pass
 
 
 def _iterdecode(
@@ -212,8 +211,7 @@ def _iterdecode(
         <Graph object (top=a) at ...>
         <Graph object (top=b) at ...>
     """
-    codec = PENMANCodec(model=model)
-    yield from codec.iterdecode(lines)
+    pass
 
 
 def _encode(
@@ -241,8 +239,7 @@ def _encode(
         '(h / hi)'
 
     """
-    codec = PENMANCodec(model=model)
-    return codec.encode(g, top=top, indent=indent, compact=compact)
+    pass
 
 
 def _load(
@@ -259,13 +256,7 @@ def _load(
     Returns:
         a list of Graph objects
     """
-    codec = PENMANCodec(model=model)
-    if isinstance(source, (str, Path)):
-        with open(source, encoding=encoding) as fh:
-            return list(codec.iterdecode(fh))
-    else:
-        assert hasattr(source, 'read')
-        return list(codec.iterdecode(source))
+    pass
 
 
 def _loads(string: str, model: Optional[Model] = None) -> List[Graph]:
@@ -278,8 +269,7 @@ def _loads(string: str, model: Optional[Model] = None) -> List[Graph]:
     Returns:
         a list of Graph objects
     """
-    codec = PENMANCodec(model=model)
-    return list(codec.iterdecode(string))
+    pass
 
 
 def _dump(
@@ -300,25 +290,12 @@ def _dump(
         indent: how to indent formatted strings
         compact: if ``True``, put initial attributes on the first line
     """
-    codec = PENMANCodec(model=model)
-    if isinstance(file, (str, Path)):
-        with open(file, 'w', encoding=encoding) as fh:
-            _dump_stream(fh, graphs, codec, indent, compact)
-    else:
-        assert hasattr(file, 'write')
-        _dump_stream(file, graphs, codec, indent, compact)
+    pass
 
 
 def _dump_stream(fh, gs, codec, indent, compact):
     """Helper method for dump() for incremental printing."""
-    ss = (codec.encode(g, indent=indent, compact=compact) for g in gs)
-    try:
-        print(next(ss), file=fh)
-    except StopIteration:
-        return
-    for s in ss:
-        print(file=fh)
-        print(s, file=fh)
+    pass
 
 
 def _dumps(
@@ -338,6 +315,4 @@ def _dumps(
     Returns:
         the string of serialized graphs
     """
-    codec = PENMANCodec(model=model)
-    strings = [codec.encode(g, indent=indent, compact=compact) for g in graphs]
-    return '\n\n'.join(strings)
+    pass

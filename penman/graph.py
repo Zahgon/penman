@@ -185,16 +185,11 @@ class Graph(object):
         """
         The top variable.
         """
-        top = self._top
-        if top is None and len(self.triples) > 0:
-            top = self.triples[0][0]  # implicit top
-        return top
+        pass
 
     @top.setter
     def top(self, top: Union[Variable, None]):
-        if top is not None and top not in self.variables():
-            raise GraphError('top must be a valid node')
-        self._top = top  # check if top is valid variable?
+        pass
 
     def variables(self) -> Set[Variable]:
         """
@@ -209,10 +204,7 @@ class Graph(object):
         """
         Return instances (concept triples).
         """
-        return [
-            Instance(*t)
-            for t in self._filter_triples(None, CONCEPT_ROLE, None)
-        ]
+        pass
 
     def edges(
         self,
@@ -225,12 +217,7 @@ class Graph(object):
 
         Edges don't include terminal triples (concepts or attributes).
         """
-        variables = self.variables()
-        return [
-            Edge(*t)
-            for t in self._filter_triples(source, role, target)
-            if t[1] != CONCEPT_ROLE and t[2] in variables
-        ]
+        pass
 
     def attributes(
         self,
@@ -244,12 +231,7 @@ class Graph(object):
         Attributes don't include concept triples or those where the
         target is a nonterminal.
         """
-        variables = self.variables()
-        return [
-            Attribute(*t)
-            for t in self._filter_triples(source, role, target)
-            if t[1] != CONCEPT_ROLE and t[2] not in variables
-        ]
+        pass
 
     def _filter_triples(
         self,
@@ -260,19 +242,7 @@ class Graph(object):
         """
         Filter triples based on their source, role, and/or target.
         """
-        if source is role is target is None:
-            triples = list(self.triples)
-        else:
-            triples = [
-                t
-                for t in self.triples
-                if (
-                    (source is None or source == t[0])
-                    and (role is None or role == t[1])
-                    and (target is None or target == t[2])
-                )
-            ]
-        return triples
+        pass
 
     def reentrancies(self) -> Dict[Variable, int]:
         """
@@ -286,15 +256,8 @@ class Graph(object):
         for the linearized form, so inverted edges are always
         re-entrant.
         """
-        entrancies: Dict[Variable, int] = defaultdict(int)
-        if self.top is not None:
-            entrancies[self.top] += 1  # implicit entrancy to top
-        for t in self.edges():
-            entrancies[t.target] += 1
-        return dict((v, cnt - 1) for v, cnt in entrancies.items() if cnt >= 2)
+        pass
 
 
 def _ensure_colon(role):
-    if not role.startswith(':'):
-        return ':' + role
-    return role
+    pass

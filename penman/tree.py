@@ -63,7 +63,7 @@ class Tree:
         The (*path*, *branch*) pairs are yielded in depth-first order
         of the tree traversal.
         """
-        yield from _walk(self.node, ())
+        pass
 
     def reset_variables(self, fmt='{prefix}{j}') -> None:
         """
@@ -99,24 +99,11 @@ class Tree:
 
 
 def _format(node: Node, level: int) -> str:
-    var, branches = node
-    next_level = level + 2
-    indent = '\n' + ' ' * next_level
-    branch_strings = [
-        _format_branch(branch, next_level) for branch in branches
-    ]
-    return '({!r}, [{}{}])'.format(
-        var, indent, (',' + indent).join(branch_strings)
-    )
+    pass
 
 
 def _format_branch(branch: Branch, level: int) -> str:
-    role, target = branch
-    if is_atomic(target):
-        target = repr(target)
-    else:
-        target = _format(target, level)
-    return f'({role!r}, {target})'
+    pass
 
 
 def _nodes(node: Node) -> List[Node]:
@@ -130,13 +117,7 @@ def _nodes(node: Node) -> List[Node]:
 
 
 def _walk(node: Node, path: Tuple[int, ...]) -> Iterator[_Step]:
-    var, branches = node
-    for i, branch in enumerate(branches):
-        curpath = path + (i,)
-        yield (curpath, branch)
-        _, target = branch
-        if not is_atomic(target):
-            yield from _walk(target, curpath)
+    pass
 
 
 def _default_variable_prefix(concept: Any) -> Variable:

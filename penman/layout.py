@@ -501,7 +501,7 @@ def reconfigure(
     if key is not None:
         # function def because mypy doesn't like key in lambda
         def _key(triple):
-            return key(triple[1])
+            pass
 
         p.triples.sort(key=_key)
 
@@ -546,13 +546,7 @@ def rearrange(
         variables = set()
 
     def sort_key(branch: Branch):
-        role, target = branch
-        if is_atomic(target):
-            criterion1 = target in variables
-        else:
-            criterion1 = target[0] in variables
-        criterion2 = True if key is None else key(role)
-        return (criterion1, criterion2)
+        pass
 
     _rearrange(t.node, sort_key)
 

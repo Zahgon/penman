@@ -56,19 +56,7 @@ def type(constant_string: Union[str, None]) -> Type:
         >>> constant.type('')
         <Type.NULL: 'Null'>
     """
-    if constant_string is None:
-        typ = NULL
-    else:
-        assert isinstance(constant_string, str)
-        value = evaluate(constant_string)
-        typ = _typemap[pytype(value)]
-        if (
-            typ == Type.SYMBOL
-            and constant_string.startswith('"')
-            and constant_string.endswith('"')
-        ):
-            typ = Type.STRING
-    return typ
+    pass
 
 
 def evaluate(constant_string: Union[str, None]) -> Constant:
